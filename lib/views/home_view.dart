@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:selfwork_sqlite/viewmodels/movie_view_model.dart';
 import 'package:provider/provider.dart';
 
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
