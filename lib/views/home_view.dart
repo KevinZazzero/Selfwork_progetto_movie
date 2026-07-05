@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+import 'package:selfwork_sqlite/viewmodels/movie_view_model.dart';
+import 'package:provider/provider.dart';
+
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    
+    
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_){
+        context.read<MovieViewModel>().fetchMovies();
+      }
+    );
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Movie Collection APP'),
+        centerTitle: true,
+      ),
+      body: Consumer<MovieViewModel>(
+        builder: (context, viewModel, child) {
+          if (viewModel.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (viewModel.movies.isEmpty) {
+            return const Center(
+              child: Text(
+                "non hai inserito alcun film", 
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 24),
+                ),
+            );
+          }
+
+          return const Text("verrà sostituito dalla lista dei film");
+        },
+      ),
+    );
+  }
+}
