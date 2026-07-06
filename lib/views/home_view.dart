@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:selfwork_sqlite/viewmodels/movie_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:selfwork_sqlite/views/components/movie_form_dialog.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -37,6 +38,13 @@ class HomeView extends StatelessWidget {
 
           return const Text("verrà sostituito dalla lista dei film");
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(context: context, 
+          builder: (_) => MovieFormDialog());
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }

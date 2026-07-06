@@ -52,7 +52,7 @@ class MovieViewModel extends ChangeNotifier {
     _filteredMovies = _movies
       .where(
         (movie)=> 
-          movie.title.toLowerCase().contains(query.toLowerCase()) !!
+          movie.title.toLowerCase().contains(query.toLowerCase()) ||
           movie.plot.toLowerCase().contains(query.toLowerCase()),
       )
       .toList();
