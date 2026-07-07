@@ -44,6 +44,7 @@ class _MovieFormDialogState extends State<MovieFormDialog> {
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       final newMovie = Movie(
+        id: widget.movie?.id,
         title: _titleController.text,
         duration: int.parse(_durationController.text),
         plot: _plotController.text,
@@ -65,10 +66,10 @@ class _MovieFormDialogState extends State<MovieFormDialog> {
     return AlertDialog(
       title: Text(widget.movie == null ? 'Aggiungi film' : "modifica film"),
       content: SingleChildScrollView(
-        key: _formKey,
         child: Form(
-          child: Column(
-            children: [
+          key: _formKey,
+            child: Column(
+              children: [
               CustomTextFiled(
                 controller: _titleController,
                 label: 'Titolo custom label',
@@ -83,7 +84,7 @@ class _MovieFormDialogState extends State<MovieFormDialog> {
                 label: 'Durata (minuti)',
                 keyboardType: TextInputType.number,
                 validator: (value) => 
-                    value == null || int.parse(value) == null
+                    value == null || int.tryParse(value) == null
                     ? "inserisci un numero"
                     : null,
               ),
@@ -115,7 +116,7 @@ class _MovieFormDialogState extends State<MovieFormDialog> {
       ),
       actions: [
         TextButton(
-          onPressed: () => Navigator.of(context).pop,
+          onPressed: () => Navigator.of(context).pop(),
           child: const Text("annulla"),
         ),
         ElevatedButton(onPressed: _submitForm, child: const Text("salva")),
