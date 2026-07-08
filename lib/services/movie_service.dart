@@ -58,7 +58,7 @@ class DBService {
 
   Future<int> deleteMovie(int id) async {
     final db = await database;
-    return await db.delete('movie', where: 'id = ?', whereArgs: [id]);
+    return await db.delete('movies', where: 'id = ?', whereArgs: [id]);
   }
 
   Future<int> updateMovie (Movie movie) async{

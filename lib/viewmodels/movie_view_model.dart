@@ -27,9 +27,19 @@ class MovieViewModel extends ChangeNotifier {
   }
 
   Future<void> deleteMovie(int id) async {
+  print('--- TENTATIVO DI CANCELLAZIONE ---');
+  print('ID ricevuto nel ViewModel: $id');
+  
+  try {
     await _dbService.deleteMovie(id);
     await fetchMovies();
+    print('Cancellazione riuscita con successo!');
+  } catch (erroreEsatto) {
+    print('--- ERRORE TROVATO! ---');
+    print(erroreEsatto);
+    print('-----------------------');
   }
+}
 
   Future<void> updateMovie(Movie movie) async {
     if (movie.id == null) return;
